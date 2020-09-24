@@ -5,10 +5,11 @@ COPY ./ ./
 RUN  cd /opt  && \
         mv target/*.jar core.jar
 USER root
+ARG studentId
 ENV JAVA_OPTS="\
 -server \
--Xmx4015m \
--Xmn2015m \
+-Xmx515m \
+-Xmn515m \
 -XX:SurvivorRatio=1 \
 -XX:MetaspaceSize=256m \
 -XX:MaxMetaspaceSize=256m \
@@ -37,4 +38,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -jar target/core.jar
+CMD java ${JAVA_OPTS} -Dstu.phone=${studentId}  -jar target/core.jar

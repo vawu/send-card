@@ -25,7 +25,6 @@ public class CardIndexApplication {
     TimeConfig timeConfig;
     @Autowired
     TimeChoiceSed sed;
-
     public static void main(String[] args) {
         SpringApplication.run(CardIndexApplication.class, args);
     }

@@ -8,5 +8,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "stu",ignoreInvalidFields = false)
 public class StuProperties {
-    private Integer phone;
+    private String phone;
 }
