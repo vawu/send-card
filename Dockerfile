@@ -3,7 +3,7 @@ MAINTAINER vawu 2064759975@qq.com
 WORKDIR /opt
 COPY ./ ./
 RUN  cd /opt  && \
-        mv *.jar core.jar
+        mv target/*.jar core.jar
 USER root
 ENV JAVA_OPTS="\
 -server \
@@ -37,4 +37,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -jar core.jar
+CMD java ${JAVA_OPTS} -jar target/core.jar
