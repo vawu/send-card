@@ -4,17 +4,20 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.Header;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
+import com.vawu.autocomple.cardindex.config.StuProperties;
 import com.vawu.autocomple.cardindex.config.TimeChoiceSed;
 import com.vawu.autocomple.cardindex.config.TimeConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 @Slf4j
+@EnableConfigurationProperties(StuProperties.class)
 @ComponentScan("com.vawu")
 @SpringBootApplication
 public class CardIndexApplication {

@@ -8,6 +8,14 @@ jobs:
     steps:
     - checkout:
         path: ~/checkout
+    - run: mvn dependency:go-offline
+
+    - save_cache:
+        paths:
+          - ~/.m2
+        key: checkout
+
+    - run: mvn clean package
 
     - setup_remote_docker
     
