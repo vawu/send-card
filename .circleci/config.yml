@@ -36,7 +36,7 @@ jobs:
     - run: 
         name: tag and push
         command: |
-          docker tag vawu/send-card:Build-${CIRCLE_BUILD_NUM}-CI vawu/<< parameters.service-name >>:latest
+          docker tag vawu/send-card:Build-${CIRCLE_BUILD_NUM}-CI vawu/send-card:latest
           docker push vawu/send-card:latest    
     - store_artifacts:
         path: target
