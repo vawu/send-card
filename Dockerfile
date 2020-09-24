@@ -3,7 +3,7 @@ MAINTAINER vawu 2064759975@qq.com
 WORKDIR /opt
 COPY ./ ./
 RUN  cd /opt  && \
-        mv target/*.jar core.jar
+        mv target/*.jar /opt/core.jar
 USER root
 ARG studentId
 ENV JAVA_OPTS="\
@@ -38,4 +38,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -Dstu.phone=${studentId}  -jar target/core.jar
+CMD java ${JAVA_OPTS} -Dstu.phone=${studentId}  -jar core.jar

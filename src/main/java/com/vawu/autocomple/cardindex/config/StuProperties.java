@@ -9,4 +9,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "stu",ignoreInvalidFields = false)
 public class StuProperties {
     private String phone;
+    private String timeTemp;
 }
