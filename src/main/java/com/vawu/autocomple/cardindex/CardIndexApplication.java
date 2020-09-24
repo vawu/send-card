@@ -6,6 +6,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.http.HttpResponse;
 import com.vawu.autocomple.cardindex.config.TimeChoiceSed;
 import com.vawu.autocomple.cardindex.config.TimeConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+@Slf4j
 @ComponentScan("com.vawu")
 @SpringBootApplication
 public class CardIndexApplication {
@@ -37,6 +39,11 @@ public class CardIndexApplication {
                     .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 12)])//头信息，多个头信息多次调用此方法即可
                     .timeout(20000)//超时，毫秒
                     .execute();
+            log.info("开始打卡-------->时间:"+sed.getSed());
+            log.info(Boolean.toString(result2.isOk()));
+            log.info(result2.body());
+            log.info(Integer.toString(result2.getStatus()));
+            log.info("打卡结束----------------");
         }
     }
 }
