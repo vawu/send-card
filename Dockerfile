@@ -4,8 +4,9 @@ WORKDIR /opt
 COPY ./ ./
 RUN  cd /opt  && \
         mv target/*.jar /opt/core.jar
+RUN echo 'Asia/Shanghai' >/etc/timezone
 USER root
-ARG studentId
+ENV studentId
 ENV JAVA_OPTS="\
 -server \
 -Xmx515m \
@@ -38,4 +39,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -Dstu.phone=${studentId}  -jar core.jar
+CMD java ${JAVA_OPTS} -Duser.timezone=GMT+8 -Dstu.phone=$studentId  -jar core.jar
