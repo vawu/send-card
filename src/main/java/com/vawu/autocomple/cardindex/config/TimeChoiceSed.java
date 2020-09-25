@@ -16,7 +16,7 @@ public class TimeChoiceSed {
         Integer time = DateUtil.thisHour(true);
         if (time >= 0 && time < 11) {
             sed = "早上";
-        } else if (time >= 11 && time < 16) {
+        } else if (time >= 11 && time < 15) {
             sed = "中午";
         } else
             sed = "晚上";
