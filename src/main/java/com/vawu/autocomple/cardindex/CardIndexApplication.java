@@ -52,8 +52,8 @@ public class CardIndexApplication {
         @Scheduled(fixedRate = 5000)
         private void configureTasks() {
             HttpResponse result2 = HttpRequest.post(timeConfig.getUrls().get(sed.getSed()))
-                    .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 12)])//头信息，多个头信息多次调用此方法即可
-                    .timeout(20000)//超时，毫秒
+                    .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 10)])//头信息，多个头信息多次调用此方法即可
+                    .timeout(60000)//超时，毫秒
                     .execute();
             log.info("开始打卡-------->时间:"+sed.getSed());
             log.info("现在打卡的地址是:"+utils.getAddress());
