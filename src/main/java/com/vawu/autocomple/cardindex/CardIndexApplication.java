@@ -47,7 +47,7 @@ public class CardIndexApplication {
 
         //3.添加定时任务
         //或直接指定时间间隔，例如：5秒
-        @Scheduled(fixedRate = intTime)
+        @Scheduled(fixedRate = 5000)
         private void configureTasks() {
             HttpResponse result2 = HttpRequest.post(timeConfig.getUrls().get(sed.getSed()))
                     .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 12)])//头信息，多个头信息多次调用此方法即可
