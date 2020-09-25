@@ -1,9 +1,11 @@
 package com.vawu.autocomple.cardindex.config;
 
 import cn.hutool.core.date.DateUtil;
+import com.vawu.autocomple.cardindex.AddressResolutionUtil;
 import com.vawu.autocomple.cardindex.CardIndexApplication;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,7 +26,8 @@ public class TimeConfig {
     String phone;
     @Value("${stu.timeTemp:5000}")
     String timeTemp;
-
+    @Autowired
+    AddressResolutionUtil utils;
     String mon_url;
     String night_url;
     String mid_url;
@@ -49,14 +52,14 @@ public class TimeConfig {
     @PostConstruct
     protected void init() {
         String date = DateUtil.format(DateUtil.date(), "yyyy-MM-dd");
-        mon_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=浙江省宁波市鄞州区曙光北路120号&kfsj=上午&rq=" +
+        mon_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=上午&rq=" +
                 date;
-        night_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=浙江省宁波市鄞州区曙光北路120号&kfsj=晚上&rq=" +
+        night_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=晚上&rq=" +
                 date;
         mid_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?rq=" +
                 date + "&phone=" + phone + "&tw=正常（36.1-37.3℃）&mrzctw" +
-                "=正常（36.1-37.3℃）&znl=浙江省宁波市鄞州区曙光北路120号&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy" +
-                "=没有&qgyynr&lx=1&shen=浙江省&shi=台州市&qu=温岭市&zsbdk=0&kfsj=中午&zzdx=没有上述情况 ";
+                "=正常（36.1-37.3℃）&znl=" + utils.getAddress() + "&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy" +
+                "=没有&qgyynr&lx=1&shen=" + utils.getProvince() + "&shi=" + utils.getCity() + "&qu=" + utils.getCounty() + "&zsbdk=0&kfsj=中午&zzdx=没有上述情况 ";
         urls.put("早上", mon_url);
         urls.put("中午", mid_url);
         urls.put("晚上", night_url);
@@ -64,19 +67,19 @@ public class TimeConfig {
 
     }
 
-   private void scheduledChoiceSed() {
-       try {
-           Method method = CardIndexApplication.SaticScheduleTask.class.getDeclaredMethod("configureTasks");
-           Scheduled foo = method.getAnnotation(Scheduled.class);
-           Long value = foo.fixedRate();
-           InvocationHandler invocationHandler = Proxy.getInvocationHandler(foo);
-           Field values = invocationHandler.getClass().getDeclaredField("memberValues");
-           values.setAccessible(true);
-           Map memberValues = (Map) values.get(invocationHandler);
-           memberValues.put("fixedRate", Long.parseLong(timeTemp));
-       } catch (Exception e) {
-           log.error("----->反射出现异常请通知开发人员进行处理");
-       }
+    private void scheduledChoiceSed() {
+        try {
+            Method method = CardIndexApplication.SaticScheduleTask.class.getDeclaredMethod("configureTasks");
+            Scheduled foo = method.getAnnotation(Scheduled.class);
+            Long value = foo.fixedRate();
+            InvocationHandler invocationHandler = Proxy.getInvocationHandler(foo);
+            Field values = invocationHandler.getClass().getDeclaredField("memberValues");
+            values.setAccessible(true);
+            Map memberValues = (Map) values.get(invocationHandler);
+            memberValues.put("fixedRate", Long.parseLong(timeTemp));
+        } catch (Exception e) {
+            log.error("----->反射出现异常请通知开发人员进行处理");
+        }
 
-   }
+    }
 }

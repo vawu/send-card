@@ -29,6 +29,8 @@ public class CardIndexApplication {
     TimeConfig timeConfig;
     @Autowired
     TimeChoiceSed sed;
+    @Autowired
+    AddressResolutionUtil utils;
     @Value("${stu.timeTemp:5000}")
     String timeTemp;
 
@@ -54,6 +56,7 @@ public class CardIndexApplication {
                     .timeout(20000)//超时，毫秒
                     .execute();
             log.info("开始打卡-------->时间:"+sed.getSed());
+            log.info("现在打卡的地址是:"+utils.getAddress());
             log.info(Boolean.toString(result2.isOk()));
             log.info(result2.body());
             log.info(Integer.toString(result2.getStatus()));
