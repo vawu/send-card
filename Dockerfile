@@ -6,7 +6,7 @@ RUN  cd /opt  && \
         mv target/*.jar /opt/core.jar
 RUN echo 'Asia/Shanghai' >/etc/timezone
 USER root
-ENV studentId
+ENV studentId=00000000
 ENV JAVA_OPTS="\
 -server \
 -Xmx515m \
