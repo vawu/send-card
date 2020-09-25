@@ -34,11 +34,13 @@ public class CardIndexApplication {
     @Value("${stu.timeTemp:5000}")
     String timeTemp;
 
-    Integer intTime=5000;
+    Integer intTime = 5000;
+
     @PostConstruct
     private void init() {
         intTime = Integer.parseInt(timeTemp);
     }
+
     public static void main(String[] args) {
         SpringApplication.run(CardIndexApplication.class, args);
     }
@@ -55,12 +57,14 @@ public class CardIndexApplication {
                     .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 10)])//头信息，多个头信息多次调用此方法即可
                     .timeout(60000)//超时，毫秒
                     .execute();
-            log.info("开始打卡-------->时间:"+sed.getSed());
-            log.info("现在打卡的地址是:"+utils.getAddress());
+            log.info("开始打卡-------->时间:" + sed.getSed());
+            log.info("现在打卡的地址是:" + utils.getAddress());
             log.info(Boolean.toString(result2.isOk()));
             log.info(result2.body());
             log.info(Integer.toString(result2.getStatus()));
             log.info("打卡结束----------------");
         }
     }
+
+
 }

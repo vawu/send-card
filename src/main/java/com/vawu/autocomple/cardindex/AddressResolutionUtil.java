@@ -1,6 +1,7 @@
 package com.vawu.autocomple.cardindex;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 
 @Configuration
 @Data
+@Slf4j
 public class AddressResolutionUtil {
     @Value("${stu.address:浙江省宁波市鄞州区曙光北路120号}")
     String address;
@@ -21,10 +23,16 @@ public class AddressResolutionUtil {
 
     @PostConstruct
     public void init() {
-        Map<String, String> provMaps = addressResolution(address).get(0);
-        province = provMaps.get("province");
-        city = provMaps.get("city");
-        county = provMaps.get("county");
+        Map<String, String> provMaps;
+        if (!address.isEmpty()) {
+            provMaps = addressResolution(address).get(0);
+            province = provMaps.get("province");
+            city = provMaps.get("city");
+            county = provMaps.get("county");
+        }
+        else {
+            log.error("------>请确认地址是否配置成功");
+        }
     }
 
     /**
