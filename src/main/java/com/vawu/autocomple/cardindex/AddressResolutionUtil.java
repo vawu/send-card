@@ -24,13 +24,12 @@ public class AddressResolutionUtil {
     @PostConstruct
     public void init() {
         Map<String, String> provMaps;
-        if (!address.isEmpty()) {
+        if (!address.isEmpty() && !address.equals("null")) {
             provMaps = addressResolution(address).get(0);
             province = provMaps.get("province");
             city = provMaps.get("city");
             county = provMaps.get("county");
-        }
-        else {
+        } else {
             log.error("------>请确认地址是否配置成功");
         }
     }

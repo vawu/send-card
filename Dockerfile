@@ -8,7 +8,7 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 USER root
 ENV studentId=00000000
 ENV timeTemp=5000
-ENV address=浙江省宁波市鄞州区曙光北路120号
+ENV address=null
 ENV JAVA_OPTS="\
 -server \
 -Xmx515m \
