@@ -7,6 +7,7 @@ RUN  cd /opt  && \
 RUN echo 'Asia/Shanghai' >/etc/timezone
 USER root
 ENV studentId=00000000
+ENV timeTemp=5000
 ENV JAVA_OPTS="\
 -server \
 -Xmx515m \
@@ -39,4 +40,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -Duser.timezone=GMT+8 -Dstu.phone=$studentId  -jar core.jar
+CMD java ${JAVA_OPTS} -Duser.timezone=GMT+8 -Dstu.phone=$studentId -Dstu.timeTemp=$timeTemp -jar core.jar
