@@ -65,7 +65,7 @@ public class CardIndexApplication {
             log.info("省:" + utils.getProvince()+" 市:"+utils.getCity()+" 区:"+utils.getCounty());
             log.info(result2.body());
             log.info(Integer.toString(result2.getStatus()));
-            log.info("打卡结束----------------");
+            log.info("打卡结束-------------------------------------------------------------->");
         }
     }
 
