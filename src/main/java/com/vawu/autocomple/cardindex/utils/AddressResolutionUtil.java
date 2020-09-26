@@ -1,4 +1,4 @@
-package com.vawu.autocomple.cardindex;
+package com.vawu.autocomple.cardindex.utils;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

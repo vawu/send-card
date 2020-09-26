@@ -1,8 +1,8 @@
 package com.vawu.autocomple.cardindex.config;
 
 import cn.hutool.core.date.DateUtil;
-import com.vawu.autocomple.cardindex.AddressResolutionUtil;
-import com.vawu.autocomple.cardindex.CardIndexApplication;
+import com.vawu.autocomple.cardindex.utils.AddressResolutionUtil;
+import com.vawu.autocomple.cardindex.tasks.SaticScheduleTask;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,15 +61,15 @@ public class TimeConfig {
         urls.put("早上", mon_url);
         urls.put("中午", mid_url);
         urls.put("晚上", night_url);
-        scheduledChoiceSed();
-
+        if (!"666".equals(timeTemp)) {
+            scheduledChoiceSed();
+        }
     }
 
     private void scheduledChoiceSed() {
         try {
-            Method method = CardIndexApplication.SaticScheduleTask.class.getDeclaredMethod("configureTasks");
+            Method method = SaticScheduleTask.class.getDeclaredMethod("configureTasks");
             Scheduled foo = method.getAnnotation(Scheduled.class);
-            Long value = foo.fixedRate();
             InvocationHandler invocationHandler = Proxy.getInvocationHandler(foo);
             Field values = invocationHandler.getClass().getDeclaredField("memberValues");
             values.setAccessible(true);
@@ -78,6 +78,7 @@ public class TimeConfig {
         } catch (Exception e) {
             log.error("----->反射出现异常请通知开发人员进行处理");
         }
+
 
     }
 }

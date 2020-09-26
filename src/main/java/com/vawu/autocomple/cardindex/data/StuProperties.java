@@ -1,4 +1,4 @@
-package com.vawu.autocomple.cardindex.config;
+package com.vawu.autocomple.cardindex.data;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
