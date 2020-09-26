@@ -14,9 +14,9 @@ public class TimeChoiceSed {
     @PostConstruct
     protected void init() {
         Integer time = DateUtil.thisHour(true);
-        if (time >= 0 && time < 11) {
+        if (time >= 0 && time < 10) {
             sed = "早上";
-        } else if (time >= 11 && time < 15) {
+        } else if (time >= 10 && time < 15) {
             sed = "中午";
         } else
             sed = "晚上";
