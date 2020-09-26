@@ -19,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.PostConstruct;
+import java.util.TimeZone;
 
 @Slf4j
 @EnableConfigurationProperties(StuProperties.class)
@@ -39,9 +40,11 @@ public class CardIndexApplication {
     @PostConstruct
     private void init() {
         intTime = Integer.parseInt(timeTemp);
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SpringApplication.run(CardIndexApplication.class, args);
     }
 
@@ -58,8 +61,8 @@ public class CardIndexApplication {
                     .timeout(60000)//超时，毫秒
                     .execute();
             log.info("开始打卡-------->时间:" + sed.getSed());
-            log.info("现在打卡的地址是:" + utils.getAddress());
-            log.info(Boolean.toString(result2.isOk()));
+            log.info("详细地址:"+utils.getAddress());
+            log.info("省:" + utils.getProvince()+" 市:"+utils.getCity()+" 区:"+utils.getCounty());
             log.info(result2.body());
             log.info(Integer.toString(result2.getStatus()));
             log.info("打卡结束----------------");

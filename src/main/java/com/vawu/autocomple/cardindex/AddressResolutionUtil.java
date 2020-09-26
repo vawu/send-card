@@ -30,7 +30,9 @@ public class AddressResolutionUtil {
             city = provMaps.get("city");
             county = provMaps.get("county");
         } else {
-            log.error("------>请确认地址是否配置成功");
+            for (int i = 0; i < 10; i++) {
+                log.error("------>请确认地址是否配置成功");
+            }
         }
     }
 
