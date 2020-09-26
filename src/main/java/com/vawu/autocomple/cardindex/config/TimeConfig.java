@@ -50,7 +50,7 @@ public class TimeConfig {
     @PostConstruct
     protected void init() {
         String date = DateUtil.format(DateUtil.date(), "yyyy-MM-dd");
-        mon_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=上午&rq=" +
+        mon_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=早上&rq=" +
                 date;
         night_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=晚上&rq=" +
                 date;
