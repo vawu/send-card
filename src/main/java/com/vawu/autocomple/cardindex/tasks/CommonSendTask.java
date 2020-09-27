@@ -34,6 +34,7 @@ public class CommonSendTask {
                 .setReadTimeout(180000)
                 .execute();
         log.info("开始打卡-------->时间:" + sed.getSed());
+        log.info("hours--->" + sed.getHour());
         log.info("详细地址:" + utils.getAddress());
         log.info("省:" + utils.getProvince() + " 市:" + utils.getCity() + " 区:" + utils.getCounty());
         log.info(result2.body());
