@@ -7,6 +7,7 @@ import cn.hutool.http.HttpResponse;
 import com.vawu.autocomple.cardindex.config.TimeConfig;
 import com.vawu.autocomple.cardindex.utils.AddressResolutionUtil;
 import com.vawu.autocomple.cardindex.utils.TimeChoiceSedUtil;
+import com.vawu.autocomple.cardindex.utils.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,12 +30,11 @@ public class CommonSendTask {
 
     public void startTask() {
         HttpResponse result2 = HttpRequest.post(timeConfig.getUrls().get(sed.getSed()))
-                .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 10)])//头信息，多个头信息多次调用此方法即可
+                .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 2)])//头信息，多个头信息多次调用此方法即可
                 .timeout(60000)//超时，毫秒
                 .setReadTimeout(180000)
                 .execute();
-        log.info("开始打卡-------->时间:" + sed.getSed());
-        log.info("hours--->" + sed.getHour());
+        log.info("开始打卡-------->时间:" + TimeUtils.getFormatedDate() + " " + sed.getHour() + sed.getSed());
         log.info("详细地址:" + utils.getAddress());
         log.info("省:" + utils.getProvince() + " 市:" + utils.getCity() + " 区:" + utils.getCounty());
         log.info(result2.body());
