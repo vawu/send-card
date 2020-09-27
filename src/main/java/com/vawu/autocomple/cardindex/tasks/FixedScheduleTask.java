@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @DependsOn("commonSendTask")
 public class FixedScheduleTask extends CommonSendTask {
 
-    @Scheduled(cron = "0 0 6,9,21 * * ?")
+    @Scheduled(cron = "0 0 6,11,21 * * ?")
     private void configureDayTasks() {
         startTask();
     }
