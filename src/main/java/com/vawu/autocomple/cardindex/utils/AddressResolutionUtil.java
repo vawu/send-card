@@ -1,4 +1,4 @@
-package com.vawu.autocomple.cardindex.utils;
+﻿package com.vawu.autocomple.cardindex.utils;
 
 import cn.hutool.core.map.MapUtil;
 import lombok.Data;
@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Data
-@Configuration
 @Slf4j
+@Configuration
 public class AddressResolutionUtil {
     @Value("${stu.address:浙江省宁波市鄞州区曙光北路120号}")
     String address;
