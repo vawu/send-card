@@ -1,4 +1,4 @@
-﻿package com.vawu.autocomple.cardindex.utils;
+package com.vawu.autocomple.cardindex.utils;
 
 import cn.hutool.core.map.MapUtil;
 import lombok.Data;
@@ -44,7 +44,6 @@ public class AddressResolutionUtil {
      *
      * @param address
      * @return
-     * @author lin
      */
     public static Map<String, String> addressResolution(String address) {
         String regex = "(?<province>[^省]+自治区|.*?省|.*?行政区|.*?市)(?<city>[^市]+自治州|.*?地区|.*?行政单位|.+盟|市辖区|.*?市|.*?县)(?<county>[^县]+县|.+区|.+市|.+旗|.+海域|.+岛)?(?<town>[^区]+区|.+镇)?(?<village>.*)";
