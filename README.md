@@ -32,5 +32,3 @@ mvn install
 
 # License
 [MIT](https://opensource.org/licenses/MIT)
-
-for update
