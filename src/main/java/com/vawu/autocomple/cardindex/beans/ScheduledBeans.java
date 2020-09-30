@@ -21,4 +21,5 @@ public class ScheduledBeans {
     public FixedScheduleTask getFixedScheduleTask() {
         return new FixedScheduleTask();
     }
+
 }

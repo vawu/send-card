@@ -28,17 +28,18 @@ public class CommonSendTask {
     @Autowired
     AddressResolutionUtil utils;
 
-    public void startTask() {
-        HttpResponse result2 = HttpRequest.post(timeConfig.getUrls().get(sed.getSed()))
+    public HttpResponse startTask() {
+        HttpResponse result = HttpRequest.post(timeConfig.getUrls().get(sed.getSed()))
                 .header(Header.USER_AGENT, timeConfig.getMy_headers()[RandomUtil.randomInt(0, 2)])//头信息，多个头信息多次调用此方法即可
                 .timeout(60000)//超时，毫秒
-                .setReadTimeout(180000)
+                .setReadTimeout(120000)
                 .execute();
         log.info("开始打卡-------->时间:" + TimeUtils.getFormatedDate() + " " + TimeUtils.getShanghaiHour() + sed.getSed());
         log.info("详细地址:" + utils.getAddress());
         log.info("省:" + utils.getProvince() + " 市:" + utils.getCity() + " 区:" + utils.getCounty());
-        log.info(result2.body());
-        log.info(Integer.toString(result2.getStatus()));
+        log.info(result.body());
+        log.info(Integer.toString(result.getStatus()));
         log.info("打卡结束-------------------------------------------------------------->");
+        return result;
     }
 }

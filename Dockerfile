@@ -41,4 +41,4 @@ ENV JAVA_OPTS="\
 -XX:+UnlockExperimentalVMOptions \
 -XX:+PrintFlagsFinal \
 -XX:GCLogFileSize=10M"
-CMD java ${JAVA_OPTS} -Duser.timezone=GMT+8 -Dstu.phone=$studentId -Dstu.timeTemp=$timeTemp -Dstu.address=$address -jar core.jar
+CMD java ${JAVA_OPTS} -Duser.timezone=GMT+8 -Dstu.phone=$studentId -Dstu.timeTemp=$timeTemp -Dstu.address=$address -Dspring.profiles.active=prod -jar core.jar

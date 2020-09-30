@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.PostConstruct;
@@ -33,20 +34,25 @@ public class TimeConfig {
     String mid_url;
     Map<String, String> urls = new HashMap<>();
 
+    @PostConstruct
+    private void init() {
+        if (!"666".equals(timeTemp)) {
+            scheduledChoiceSed();
+        }
+    }
+
     String[] my_headers = {
             "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36",
             "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:30.0) Gecko/20100101 Firefox/30.0",
             "Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11",
     };
 
-    @PostConstruct
-    protected void init() {
-//        String date = DateUtil.format(DateUtil.date(), "yyyy-MM-dd");
+    public Map<String, String> getUrls() {
         String date = TimeUtils.getFormatedDate();
         mon_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=早上&rq=" +
-                date+"&sfzx=";
+                date + "&sfzx=";
         night_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?phone=" + phone + "&lx=1&mrzctw=正常（36.1-37.3℃）&dw=" + utils.getAddress() + "&kfsj=晚上&rq=" +
-                date+"&sfzx=";
+                date + "&sfzx=";
         mid_url = "http://fk.nbcc.cn/fxsq/mrdk/save.htm?rq=" +
                 date + "&phone=" + phone + "&tw=正常（36.1-37.3℃）&mrzctw" +
                 "=正常（36.1-37.3℃）&znl=" + utils.getAddress() + "&jrqk=正常&jrqk1=0&jrqk2&jrqk3&jcjwry=没有&sfyjkm=绿码&jcxgfyry=没有&qgyy" +
@@ -54,10 +60,9 @@ public class TimeConfig {
         urls.put("早上", mon_url);
         urls.put("中午", mid_url);
         urls.put("晚上", night_url);
-        if (!"666".equals(timeTemp)) {
-            scheduledChoiceSed();
-        }
+        return urls;
     }
+
 
     private void scheduledChoiceSed() {
         try {
