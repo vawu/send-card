@@ -1,3 +1,4 @@
 git add .
-git commit -m update
+git commit -m up
+date
 git push origin master
