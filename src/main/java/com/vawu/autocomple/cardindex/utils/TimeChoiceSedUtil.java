@@ -12,9 +12,9 @@ public class TimeChoiceSedUtil {
 
     public String getSed() {
         Integer time = TimeUtils.getShanghaiHour();
-        if (time >= 0 && time < 10) {
+        if (time >= 0 && time < 9) {
             sed = "早上";
-        } else if (time >= 10 && time < 15) {
+        } else if (time >= 9 && time < 15) {
             sed = "中午";
         } else
             sed = "晚上";

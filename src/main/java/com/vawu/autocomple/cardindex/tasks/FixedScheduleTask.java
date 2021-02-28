@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 @DependsOn("commonSendTask")
 public class FixedScheduleTask extends CommonSendTask {
 
-    @Scheduled(cron = "0 0 5-10,9-13,15-22 * * ?")
+    @Scheduled(cron = "0 0 5-8,9-13,15-22 * * ?")
     private void configureDayTasks() {
         HttpResponse response = startTask();
         String body = response.body();
